@@ -8,7 +8,7 @@ public class AuxClass implements Comparator<AuxClass> {
 
 
     public int compare(AuxClass t1, AuxClass t2) {
-        return Double.compare(t1.getDistance(), t2.getDistance());
+        return Double.compare(t2.getDistance(), t1.getDistance());
 
     }
     public AuxClass () {
@@ -34,5 +34,13 @@ public class AuxClass implements Comparator<AuxClass> {
 
     public void setDistance(double distance) {
         this.distance = distance;
+    }
+
+    @Override
+    public String toString() {
+        return "AuxClass{" +
+                "classification='" + classification + '\'' +
+                ", distance=" + distance +
+                '}';
     }
 }

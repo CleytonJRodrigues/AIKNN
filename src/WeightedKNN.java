@@ -32,10 +32,12 @@ public class WeightedKNN {
 
 
 //Isn't using weight yet, i'll probably add this funcionality tomorrow.
-    static void WeightedKNNCalculator(int k,List<Instances> baseInstances, Instances... instance) {  // using varargs
+    static double WeightedKNNCalculator(int k,List<Instances> baseInstances, Instances... instance) {  // using varargs
         List<AuxClass> aux = new ArrayList<>();
         AuxClass compara = new AuxClass();
-        int countPop, countRap, countDance, count;
+        int count;
+        double auxRightness = 0;
+        double countPop, countRap, countDance;
 
         for(Instances x: instance) {
             countPop = 0;
@@ -43,8 +45,10 @@ public class WeightedKNN {
             countDance = 0;
             count = 0;
             for(Instances y: baseInstances) {
-                AuxClass obj = new AuxClass(y.getClassification(), WeightedKNN.euclidianDistance(x, y));
-                aux.add(obj);
+                if(!x.equals(y)) {
+                    AuxClass obj = new AuxClass(y.getClassification(), (1 / WeightedKNN.euclidianDistance(x, y)));
+                    aux.add(obj);
+                }
 
             }
 
@@ -57,26 +61,41 @@ public class WeightedKNN {
                     break;
                 }
                 if(var.getClassification().equals("hip-hop/rap")) {
-                    countRap++;
+                    countRap += var.getDistance();
+
                 }else if(var.getClassification().equals("pop")) {
-                    countPop++;
+                    countPop += var.getDistance();
+
                 }else {
-                    countDance++;
+                    countDance += var.getDistance();
+
                 }
                 count++;
             }
-            if(countRap - countPop > 0 && countRap - countDance > 0) {
-                System.out.println("Sua instância de acordo com o KNN é da classe: hip-hop/rap");
-            }else if(countPop - countRap > 0 && countPop - countDance > 0) {
-                System.out.println("Sua instância de acordo com o KNN é da classe: pop");
+            if((Math.max(countRap, countPop) == countRap && Math.max(countPop, countDance) == countPop)
+            ||(Math.max(countRap, countDance) == countRap && Math.max(countDance, countPop) == countDance)) {
+                //System.out.println("Sua instância de acordo com o KNN é da classe: hip-hop/rap");
+                if(x.getClassification().equals("hip-hop/rap")) {
+                    auxRightness++;
+                }
+            }else if((Math.max(countPop, countRap) == countPop && Math.max(countRap, countDance) == countRap)
+            ||(Math.max(countPop, countDance) == countPop && Math.max(countDance, countRap) == countDance)) {
+                //System.out.println("Sua instância de acordo com o KNN é da classe: pop");
+                if(x.getClassification().equals("pop")) {
+                    auxRightness++;
+                }
             }else {
-                System.out.println("Sua instância de acordo com o KNN é da classe: dance");
+                //System.out.println("Sua instância de acordo com o KNN é da classe: dance");
+                if(x.getClassification().equals("dance")) {
+                    auxRightness++;
+                }
             }
             aux.clear();
 
         }
 
-
+    System.out.println("Acerto "+auxRightness+"tamanho "+instance.length);
+    return ((auxRightness/instance.length)*100); // this variable is responsible for showing this algorithm's rightness rate;
 
     }
 }

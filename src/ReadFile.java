@@ -23,7 +23,9 @@ public class ReadFile {
     static void populateInstances(BufferedReader br, List<Instances> base) throws IOException {
         int count;
         int auxCount;
-        double normalizationVar = 0;
+        double maximumDistance = 0;
+        double minimumDistance = 0;
+        double auxDouble = 0;
         String aux;
 
 
@@ -32,7 +34,7 @@ public class ReadFile {
                 if(line.startsWith("@") || line.isEmpty()) {
                     continue;
                 }
-                Instances nova = new Instances();
+                Instances n = new Instances();
                 count = 0;
                 auxCount = 0;
                 for(int i = 0; auxCount!=14; i++) {
@@ -47,47 +49,101 @@ public class ReadFile {
                             auxCount++;
                         }
 
+                        if(auxCount != 14) {
+                            auxDouble = Double.parseDouble(aux);
+                        }
+
                         switch(auxCount) {
-                            case 1: nova.setAcousticness(Double.parseDouble(aux));
-                                normalizationVar += Double.parseDouble(aux);
+
+                            case 1: n.setAcousticness(auxDouble);
+                                maximumDistance = auxDouble;
+                                minimumDistance = auxDouble;
                                 break;
-                            case 2: nova.setDanceability(Double.parseDouble(aux));
-                                normalizationVar += Double.parseDouble(aux);
+                            case 2: n.setDanceability(auxDouble);
+                                if(auxDouble > maximumDistance) {
+                                    maximumDistance = auxDouble;
+                                }else if(auxDouble < minimumDistance) {
+                                    minimumDistance = auxDouble;
+                                }
                                 break;
-                            case 3: nova.setDuration_ms(Double.parseDouble(aux));
-                                normalizationVar += Double.parseDouble(aux);
+                            case 3: n.setDuration_ms(auxDouble);
+                                if(auxDouble > maximumDistance) {
+                                    maximumDistance = auxDouble;
+                                }else if(auxDouble < minimumDistance) {
+                                    minimumDistance = auxDouble;
+                                }
                                 break;
-                            case 4: nova.setEnergy(Double.parseDouble(aux));
-                                normalizationVar += Double.parseDouble(aux);
+                            case 4: n.setEnergy(auxDouble);
+                                if(auxDouble > maximumDistance) {
+                                    maximumDistance = auxDouble;
+                                }else if(auxDouble < minimumDistance) {
+                                    minimumDistance = auxDouble;
+                                }
                                 break;
-                            case 5: nova.setInstrumentalness(Double.parseDouble(aux));
-                                normalizationVar += Double.parseDouble(aux);
+                            case 5: n.setInstrumentalness(auxDouble);
+                                if(auxDouble > maximumDistance) {
+                                    maximumDistance = auxDouble;
+                                }else if(auxDouble < minimumDistance) {
+                                    minimumDistance = auxDouble;
+                                }
                                 break;
-                            case 6: nova.setKey(Double.parseDouble(aux));
-                                normalizationVar += Double.parseDouble(aux);
+                            case 6: n.setKey(auxDouble);
+                                if(auxDouble > maximumDistance) {
+                                    maximumDistance = auxDouble;
+                                }else if(auxDouble < minimumDistance) {
+                                    minimumDistance = auxDouble;
+                                }
                                 break;
-                            case 7: nova.setLiveness(Double.parseDouble(aux));
-                                normalizationVar += Double.parseDouble(aux);
+                            case 7: n.setLiveness(auxDouble);
+                                if(auxDouble > maximumDistance) {
+                                    maximumDistance = auxDouble;
+                                }else if(auxDouble < minimumDistance) {
+                                    minimumDistance = auxDouble;
+                                }
                                 break;
-                            case 8: nova.setLoudness(Double.parseDouble(aux));
-                                normalizationVar += Double.parseDouble(aux);
+                            case 8: n.setLoudness(auxDouble);
+                                if(auxDouble > maximumDistance) {
+                                    maximumDistance = auxDouble;
+                                }else if(auxDouble < minimumDistance) {
+                                    minimumDistance = auxDouble;
+                                }
                                 break;
-                            case 9: nova.setMode(Double.parseDouble(aux));
-                                normalizationVar += Double.parseDouble(aux);
+                            case 9: n.setMode(auxDouble);
+                                if(auxDouble > maximumDistance) {
+                                    maximumDistance = auxDouble;
+                                }else if(auxDouble < minimumDistance) {
+                                    minimumDistance = auxDouble;
+                                }
                                 break;
-                            case 10: nova.setSpeechiness(Double.parseDouble(aux));
-                                normalizationVar += Double.parseDouble(aux);
+                            case 10: n.setSpeechiness(auxDouble);
+                                if(auxDouble > maximumDistance) {
+                                    maximumDistance = Double.parseDouble(aux);
+                                }else if(auxDouble < minimumDistance) {
+                                    minimumDistance = auxDouble;
+                                }
                                 break;
-                            case 11: nova.setTempo(Double.parseDouble(aux));
-                                normalizationVar += Double.parseDouble(aux);
+                            case 11: n.setTempo(auxDouble);
+                                if(auxDouble > maximumDistance) {
+                                    maximumDistance = auxDouble;
+                                }else if(auxDouble < minimumDistance) {
+                                    minimumDistance = auxDouble;
+                                }
                                 break;
-                            case 12: nova.setTime_signature(Double.parseDouble(aux));
-                                normalizationVar += Double.parseDouble(aux);
+                            case 12: n.setTime_signature(auxDouble);
+                                if(auxDouble > maximumDistance) {
+                                    maximumDistance = auxDouble;
+                                }else if(auxDouble < minimumDistance) {
+                                    minimumDistance = auxDouble;
+                                }
                                 break;
-                            case 13: nova.setValence(Double.parseDouble(aux));
-                                normalizationVar += Double.parseDouble(aux);
+                            case 13: n.setValence(auxDouble);
+                                if(auxDouble > maximumDistance) {
+                                    maximumDistance = auxDouble;
+                                }else if(auxDouble < minimumDistance) {
+                                    minimumDistance = auxDouble;
+                                };
                                 break;
-                            case 14: nova.setClassification(aux);
+                            case 14: n.setClassification(aux);
                                 continue;
 
                         }
@@ -96,26 +152,25 @@ public class ReadFile {
 
 
                 }
-                // divides a characteristic by the somatory of all characteristics
+                // normalization;
 
 
-                nova.setAcousticness(nova.getAcousticness()/normalizationVar);
-                nova.setDanceability(nova.getDanceability()/normalizationVar);
-                nova.setDuration_ms(nova.getDuration_ms()/normalizationVar);
-                nova.setEnergy(nova.getEnergy()/normalizationVar);
-                nova.setInstrumentalness(nova.getInstrumentalness()/normalizationVar);
-                nova.setKey(nova.getKey()/normalizationVar);
-                nova.setLiveness(nova.getLiveness()/normalizationVar);
-                nova.setLoudness(nova.getLoudness()/normalizationVar);
-                nova.setMode(nova.getMode()/normalizationVar);
-                nova.setSpeechiness(nova.getSpeechiness()/normalizationVar);
-                nova.setTempo(nova.getTempo()/normalizationVar);
-                nova.setTime_signature(nova.getTime_signature()/normalizationVar);
-                nova.setValence(nova.getValence()/normalizationVar);
+                n.setAcousticness((n.getAcousticness() - minimumDistance)/(maximumDistance - minimumDistance));
+                n.setDanceability((n.getDanceability() - minimumDistance)/(maximumDistance - minimumDistance));
+                n.setDuration_ms((n.getDuration_ms() - minimumDistance)/(maximumDistance - minimumDistance));
+                n.setEnergy((n.getEnergy()/ - minimumDistance)/(maximumDistance - minimumDistance));
+                n.setInstrumentalness((n.getInstrumentalness() - minimumDistance)/(maximumDistance - minimumDistance));
+                n.setKey((n.getKey() - minimumDistance)/(maximumDistance - minimumDistance));
+                n.setLiveness((n.getLiveness() - minimumDistance)/(maximumDistance - minimumDistance));
+                n.setLoudness((n.getLoudness() - minimumDistance)/(maximumDistance - minimumDistance));
+                n.setMode((n.getMode() - minimumDistance)/(maximumDistance - minimumDistance));
+                n.setSpeechiness((n.getTempo() - minimumDistance)/(maximumDistance - minimumDistance));
+                n.setTime_signature((n.getTime_signature() - minimumDistance)/(maximumDistance - minimumDistance));
+                n.setValence((n.getValence() - minimumDistance)/(maximumDistance - minimumDistance));
+                n.setTempo((n.getTempo() - minimumDistance)/(maximumDistance - minimumDistance));
 
 
-
-                base.add(nova);
+                base.add(n);
 
             }
 
