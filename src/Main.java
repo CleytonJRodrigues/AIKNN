@@ -30,12 +30,11 @@ public class Main {
         int testBase = Integer.valueOf(testAux.toString()); // this is for separate 2/3 for data and 1/3 for tests
 
         //Here i created an array for tests.
-        Instances vetor[] = base.subList(testBase+1, Integer.valueOf(instances.toString())).toArray(new Instances[Integer.valueOf(instances.toString()) -(testBase+1)]);
+        Instances vetor[] = base.subList(testBase, Integer.valueOf(instances.toString())).toArray(new Instances[Integer.valueOf(instances.toString()) -(testBase)]);
 
         //Here i removed the reference for the instances that were added to the tests array;
         base = base.subList(0, testBase);
         Instances.count = testAux;//updating the number of instances.
-
 
         //i don't know if there's a problem in using a large number for being k-value, but using k-380 gave me the best output.
 
