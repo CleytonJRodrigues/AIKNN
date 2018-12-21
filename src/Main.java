@@ -38,7 +38,10 @@ public class Main {
 
         //i don't know if there's a problem in using a large number for being k-value, but using k-380 gave me the best output.
 
-        System.out.println("Taxa de acerto: "+WeightedKNN.weightedKNNCalculator(380, base, vetor));
+        //System.out.println("Taxa de acerto: "+WeightedKNN.weightedKNNCalculator(380, base, vetor));
+        //System.out.println("Taxa de acerto: "+WeightedKNN.weightedKNNCalculator(184, base, vetor));
+        //System.out.println("Taxa de acerto: "+WeightedKNN.weightedKNNCalculator(94, base, vetor));
+        System.out.println("Taxa de acerto: "+WeightedKNN.weightedKNNCalculator(64, base, vetor));
 
     }
 }
