@@ -5,7 +5,7 @@ public class Instances{
 
     private double acousticness;
     private double danceability;
-    private double duration_ms;
+    //private double duration_ms;
     private double energy;
     private double instrumentalness;
     private double key;
@@ -30,13 +30,13 @@ public class Instances{
     }
 
 
-    public Instances(double acousticness, double danceability, double duration_ms, double energy, double instrumentalness,
+    public Instances(double acousticness, double danceability,/* double duration_ms,*/ double energy, double instrumentalness,
                      double key, double liveness, double loudness, double mode, double speechiness, double tempo,
                      double time_signature, double valence, String classification) {
 
         this.acousticness = acousticness;
         this.danceability = danceability;
-        this.duration_ms = duration_ms;
+        //this.duration_ms = duration_ms;
         this.energy = energy;
         this.instrumentalness = instrumentalness;
         this.key = key;
@@ -69,7 +69,7 @@ public class Instances{
     public void setDanceability(double danceability) {
         this.danceability = danceability;
     }
-
+/*
     public double getDuration_ms() {
         return duration_ms;
     }
@@ -77,7 +77,7 @@ public class Instances{
     public void setDuration_ms(double duration_ms) {
         this.duration_ms = duration_ms;
     }
-
+*/
     public double getEnergy() {
         return energy;
     }
@@ -93,6 +93,7 @@ public class Instances{
     public void setInstrumentalness(double instrumentalness) {
         this.instrumentalness = instrumentalness;
     }
+
 
     public double getKey() {
         return key;
@@ -173,7 +174,7 @@ public class Instances{
         Instances instances = (Instances) o;
         return Double.compare(instances.getAcousticness(), getAcousticness()) == 0 &&
                 Double.compare(instances.getDanceability(), getDanceability()) == 0 &&
-                Double.compare(instances.getDuration_ms(), getDuration_ms()) == 0 &&
+                //Double.compare(instances.getDuration_ms(), getDuration_ms()) == 0 &&
                 Double.compare(instances.getEnergy(), getEnergy()) == 0 &&
                 Double.compare(instances.getInstrumentalness(), getInstrumentalness()) == 0 &&
                 Double.compare(instances.getKey(), getKey()) == 0 &&
@@ -192,7 +193,7 @@ public class Instances{
         return "Instances{" +
                 "acousticness=" + acousticness +
                 ", danceability=" + danceability +
-                ", duration_ms=" + duration_ms +
+               // ", duration_ms=" + duration_ms +
                 ", energy=" + energy +
                 ", instrumentalness=" + instrumentalness +
                 ", key=" + key +
