@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class WeightedKNN {
+public class KNN {
 
 
     static double euclidianDistance(Instances instance, Instances instance2) {
@@ -48,7 +48,7 @@ public class WeightedKNN {
             count = 0;
             for(Instances y: baseInstances) {
                 if(!x.equals(y)) {
-                    AuxClass obj = new AuxClass(y.getClassification(), (/*1 /*/ WeightedKNN.euclidianDistance(x, y)));
+                    AuxClass obj = new AuxClass(y.getClassification(), (/*1 /*/ KNN.euclidianDistance(x, y)));
                     aux.add(obj);
                 }
 

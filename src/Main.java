@@ -3,7 +3,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Main {
@@ -36,10 +35,14 @@ public class Main {
         base = base.subList(0, testBase);
         Instances.count = testAux;//updating the number of instances.
 
+        for(int i = 0; i < 450; i++) {
+            System.out.println("Taxa de acerto: "+ KNN.knnCalculator(i, base, vetor));
+            System.out.println(""+i);
+        }
 
-        //System.out.println("Taxa de acerto: "+WeightedKNN.weightedKNNCalculator(380, base, vetor));
-        System.out.println("Taxa de acerto: "+WeightedKNN.knnCalculator(183, base, vetor));
-        //System.out.println("Taxa de acerto: "+WeightedKNN.weightedKNNCalculator(94, base, vetor));
+        //System.out.println("Taxa de acerto: "+KNN.weightedKNNCalculator(380, base, vetor));
+        System.out.println("Taxa de acerto: "+ KNN.knnCalculator(183, base, vetor));
+        //System.out.println("Taxa de acerto: "+KNN.weightedKNNCalculator(94, base, vetor));
 
 
     }
