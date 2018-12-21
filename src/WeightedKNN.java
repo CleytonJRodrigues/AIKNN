@@ -33,12 +33,13 @@ public class WeightedKNN {
 
 
 //Isn't using weight yet, i'll probably add this funcionality tomorrow.
-    static double weightedKNNCalculator(int k,List<Instances> baseInstances, Instances... instance) {  // using varargs
+    static double knnCalculator(int k,List<Instances> baseInstances, Instances... instance) {  // using varargs
         List<AuxClass> aux = new ArrayList<>();
         AuxClass compara = new AuxClass();
         int count;
         double auxRightness = 0;
-        double countPop, countRap, countDance;
+        //double countPop, countRap, countDance;
+        int countPop, countRap, countDance;
 
         for(Instances x: instance) {
             countPop = 0;
@@ -47,7 +48,7 @@ public class WeightedKNN {
             count = 0;
             for(Instances y: baseInstances) {
                 if(!x.equals(y)) {
-                    AuxClass obj = new AuxClass(y.getClassification(), (1 / WeightedKNN.euclidianDistance(x, y)));
+                    AuxClass obj = new AuxClass(y.getClassification(), (/*1 /*/ WeightedKNN.euclidianDistance(x, y)));
                     aux.add(obj);
                 }
 
@@ -62,13 +63,16 @@ public class WeightedKNN {
                     break;
                 }
                 if(var.getClassification().equals("hip-hop/rap")) {
-                    countRap += var.getDistance();
+                    //countRap += var.getDistance();
+                    countRap++;
 
                 }else if(var.getClassification().equals("pop")) {
-                    countPop += var.getDistance();
+                    //countPop += var.getDistance();
+                    countPop++;
 
                 }else {
-                    countDance += var.getDistance();
+                    //countDance += var.getDistance();
+                    countDance++;
 
                 }
                 count++;

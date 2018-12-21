@@ -160,7 +160,6 @@ public class ReadFile {
 
 
 
-
                 n.setAcousticness((n.getAcousticness() - minimumDistance)/(maximumDistance - minimumDistance));
                 n.setDanceability((n.getDanceability() - minimumDistance)/(maximumDistance - minimumDistance));
                // n.setDuration_ms((n.getDuration_ms() - minimumDistance)/(maximumDistance - minimumDistance));
