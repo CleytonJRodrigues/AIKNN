@@ -26,7 +26,7 @@ public class Main {
 //tests
 
         Instances vetor[] = base.subList(100, 500).toArray(new Instances[500-100]);
-        WeightedKNN.WeightedKNNCalculator(3, base, vetor);
+        WeightedKNN.WeightedKNNCalculator(11, base, vetor);
 
     }
 }
