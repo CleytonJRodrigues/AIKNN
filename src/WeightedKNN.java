@@ -6,7 +6,7 @@ public class WeightedKNN {
     static double euclidianDistance(Instances instance, Instances instance2) {
         double valor[] = new double[12];
         double soma = 0;
-        // i think characteristic such as key is irrelevant for the classification.
+        // i think characteristic such as duration_ms is irrelevant for the classification.
         valor[0] = Math.pow(instance.getAcousticness() - instance2.getAcousticness(), 2);
         valor[1] = Math.pow(instance.getDanceability() - instance2.getDanceability(), 2);
         //valor[2] = Math.pow(instance.getDuration_ms() - instance2.getDuration_ms(), 2);
