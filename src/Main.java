@@ -17,7 +17,7 @@ public class Main {
         String aux = null;
         List<Instances> base = new ArrayList<>();
         try {
-            ReadFile.populateInstances(ReadFile.abrirArquivo(file, fr, br), base);
+            ReadFile.populateInstances(ReadFile.openFile(file, fr, br), base);
         }catch(IOException e) {
             e.printStackTrace();
         }finally {

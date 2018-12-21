@@ -7,7 +7,7 @@ import java.util.List;
 public class ReadFile {
 
 
-    static BufferedReader abrirArquivo(File file, FileReader fr, BufferedReader br) {
+    static BufferedReader openFile(File file, FileReader fr, BufferedReader br) {
 
         try {
             //reading file
