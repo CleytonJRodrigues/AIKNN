@@ -32,7 +32,7 @@ public class WeightedKNN {
 
 
 //Isn't using weight yet, i'll probably add this funcionality tomorrow.
-    static double WeightedKNNCalculator(int k,List<Instances> baseInstances, Instances... instance) {  // using varargs
+    static double weightedKNNCalculator(int k,List<Instances> baseInstances, Instances... instance) {  // using varargs
         List<AuxClass> aux = new ArrayList<>();
         AuxClass compara = new AuxClass();
         int count;

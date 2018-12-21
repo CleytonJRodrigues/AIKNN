@@ -26,7 +26,7 @@ public class Main {
 //tests
 
         Instances vetor[] = base.subList(100, 168).toArray(new Instances[168-100]);
-        System.out.println("Taxa de acerto: "+WeightedKNN.WeightedKNNCalculator(27, base, vetor));
+        System.out.println("Taxa de acerto: "+WeightedKNN.weightedKNNCalculator(27, base, vetor));
 
     }
 }
