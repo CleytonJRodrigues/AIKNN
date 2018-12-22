@@ -2,14 +2,14 @@ import java.util.*;
 
 public class KNN {
 
-
+//
     static double euclidianDistance(Instances instance, Instances instance2) {
         double valor[] = new double[12];
         double soma = 0;
-        // i think characteristic such as duration_ms is irrelevant for the classification.
+        // Characteristic such as duration_ms is irrelevant for the classification.
+        // so i disconsidered it in this algorithm
         valor[0] = Math.pow(instance.getAcousticness() - instance2.getAcousticness(), 2);
         valor[1] = Math.pow(instance.getDanceability() - instance2.getDanceability(), 2);
-        //valor[2] = Math.pow(instance.getDuration_ms() - instance2.getDuration_ms(), 2);
         valor[2] = Math.pow(instance.getEnergy() - instance2.getEnergy(), 2);
         valor[3] = Math.pow(instance.getInstrumentalness() - instance2.getInstrumentalness(), 2);
         valor[4] = Math.pow(instance.getKey() - instance2.getKey(), 2);
@@ -32,7 +32,8 @@ public class KNN {
     }
 
 
-//Isn't using weight yet, i'll probably add this funcionality tomorrow.
+    // initially i thought about making this method a weightedKNN, but tests have showed better results using a normal knn.
+
     static double knnCalculator(int k,List<Instances> baseInstances, Instances... instance) {  // using varargs
         List<AuxClass> aux = new ArrayList<>();
         AuxClass compara = new AuxClass();
@@ -63,15 +64,12 @@ public class KNN {
                     break;
                 }
                 if(var.getClassification().equals("hip-hop/rap")) {
-                    //countRap += var.getDistance();
                     countRap++;
 
                 }else if(var.getClassification().equals("pop")) {
-                    //countPop += var.getDistance();
                     countPop++;
 
                 }else {
-                    //countDance += var.getDistance();
                     countDance++;
 
                 }
@@ -79,18 +77,15 @@ public class KNN {
             }
             if((Math.max(countRap, countPop) == countRap && Math.max(countPop, countDance) == countPop)
             ||(Math.max(countRap, countDance) == countRap && Math.max(countDance, countPop) == countDance)) {
-                //System.out.println("Sua instância de acordo com o KNN é da classe: hip-hop/rap");
                 if(x.getClassification().equals("hip-hop/rap")) {
                     auxRightness++;
                 }
             }else if((Math.max(countPop, countRap) == countPop && Math.max(countRap, countDance) == countRap)
             ||(Math.max(countPop, countDance) == countPop && Math.max(countDance, countRap) == countDance)) {
-                //System.out.println("Sua instância de acordo com o KNN é da classe: pop");
                 if(x.getClassification().equals("pop")) {
                     auxRightness++;
                 }
             }else {
-                //System.out.println("Sua instância de acordo com o KNN é da classe: dance");
                 if(x.getClassification().equals("dance")) {
                     auxRightness++;
                 }
@@ -99,7 +94,7 @@ public class KNN {
 
         }
 
-    System.out.println("Acerto "+auxRightness+"tamanho "+instance.length);
+    System.out.println("Acerto: "+auxRightness+"\nTamanho da base de testes: "+instance.length+"\nTamanho da base do knn: "+baseInstances.size());
     return ((auxRightness/instance.length)*100); // this variable is responsible for showing this algorithm's rightness rate;
 
     }

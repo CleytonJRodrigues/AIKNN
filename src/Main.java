@@ -35,14 +35,13 @@ public class Main {
         base = base.subList(0, testBase);
         Instances.count = testAux;//updating the number of instances.
 
-        for(int i = 0; i < 450; i++) {
-            System.out.println("Taxa de acerto: "+ KNN.knnCalculator(i, base, vetor));
-            System.out.println(""+i);
-        }
 
-        //System.out.println("Taxa de acerto: "+KNN.weightedKNNCalculator(380, base, vetor));
-        System.out.println("Taxa de acerto: "+ KNN.knnCalculator(183, base, vetor));
-        //System.out.println("Taxa de acerto: "+KNN.weightedKNNCalculator(94, base, vetor));
+        double result = KNN.knnCalculator(183, base, vetor);
+
+        System.out.printf("Taxa de acerto: %.4f\nTaxa de erro: %.4f", result, (100-result) );
+
+
+
 
 
     }
