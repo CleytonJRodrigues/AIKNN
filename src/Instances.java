@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public class Instances{
+public class Instances {
 
 
     private double acousticness;
@@ -18,7 +18,7 @@ public class Instances{
     private String classification;
     public static long count;
 
-    static{
+    static {
         // this counter is to help us know how many instances of this class were created.
         count = 0;
     }
@@ -47,9 +47,6 @@ public class Instances{
         this.valence = valence;
         this.classification = classification;
     }
-
-
-
 
 
     public double getAcousticness() {

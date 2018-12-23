@@ -6,14 +6,15 @@ public class AuxClass implements Comparator<AuxClass> {
     private double distance;
 
 
-
     public int compare(AuxClass t1, AuxClass t2) {
         return Double.compare(t1.getDistance(), t2.getDistance());
 
     }
-    public AuxClass () {
+
+    public AuxClass() {
 
     }
+
     public AuxClass(String classification, double distance) {
         this.classification = classification;
         this.distance = distance;
