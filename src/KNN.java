@@ -92,7 +92,7 @@ public class KNN {
 
         }
 
-    System.out.println("Acerto: "+auxRightness+"\nTamanho da base de testes: "+instance.length+"\nTamanho da base do knn: "+baseInstances.size());
+    System.out.println("Acerto: "+Double.valueOf(auxRightness).intValue()+"\nTamanho da base de testes: "+instance.length+"\nTamanho da base do knn: "+baseInstances.size());
     return ((auxRightness/instance.length)*100); // this variable is responsible for showing this algorithm's rightness rate;
 
     }
