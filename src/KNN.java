@@ -36,10 +36,9 @@ public class KNN {
 
     static double knnCalculator(int k,List<Instances> baseInstances, Instances... instance) {  // using varargs
         List<AuxClass> aux = new ArrayList<>();
-        AuxClass compara = new AuxClass();
+        AuxClass compare = new AuxClass();
         int count;
         double auxRightness = 0;
-        //double countPop, countRap, countDance;
         int countPop, countRap, countDance;
 
         for(Instances x: instance) {
@@ -49,14 +48,13 @@ public class KNN {
             count = 0;
             for(Instances y: baseInstances) {
                 if(!x.equals(y)) {
-                    AuxClass obj = new AuxClass(y.getClassification(), (/*1 /*/ KNN.euclidianDistance(x, y)));
+                    AuxClass obj = new AuxClass(y.getClassification(), (KNN.euclidianDistance(x, y)));
                     aux.add(obj);
                 }
 
             }
 
-            Collections.sort(aux, compara);
-
+            Collections.sort(aux, compare);
 
             for (AuxClass var: aux) {
 
