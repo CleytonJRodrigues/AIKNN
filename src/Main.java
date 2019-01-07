@@ -34,7 +34,7 @@ public class Main {
         Instances vetor[] = base.subList(testBase, Integer.valueOf(instances.toString())).toArray(new Instances[Integer.valueOf(instances.toString()) - (testBase)]);
 
         //creating confusion matrix
-        // this loop is responsible for finding out, the number of classifications. (dance, rap...)
+        // this loop is responsible for finding out, the number of classes/labels. (dance, rap...)
         List<String> classifications = new ArrayList<>();
 
         for(Instances n: vetor) {
@@ -44,6 +44,7 @@ public class Main {
         }
 
 
+        //Creating confusion matrix
         int[][] confusionMatrix = new int [classifications.size()][classifications.size()];
 
         for(int i = 0; i < confusionMatrix.length; i++) {
