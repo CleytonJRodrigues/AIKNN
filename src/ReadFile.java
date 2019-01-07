@@ -88,12 +88,6 @@ public class ReadFile {
                             }
                             break;
                         case 6:
-                            n.setKey(auxDouble);
-                            if (auxDouble > maximumDistance) {
-                                maximumDistance = auxDouble;
-                            } else if (auxDouble < minimumDistance) {
-                                minimumDistance = auxDouble;
-                            }
                             break;
                         case 7:
                             n.setLiveness(auxDouble);
@@ -104,20 +98,16 @@ public class ReadFile {
                             }
                             break;
                         case 8:
+
                             n.setLoudness(auxDouble);
                             if (auxDouble > maximumDistance) {
                                 maximumDistance = auxDouble;
                             } else if (auxDouble < minimumDistance) {
                                 minimumDistance = auxDouble;
                             }
+
                             break;
                         case 9:
-                            n.setMode(auxDouble);
-                            if (auxDouble > maximumDistance) {
-                                maximumDistance = auxDouble;
-                            } else if (auxDouble < minimumDistance) {
-                                minimumDistance = auxDouble;
-                            }
                             break;
                         case 10:
                             n.setSpeechiness(auxDouble);
@@ -128,20 +118,8 @@ public class ReadFile {
                             }
                             break;
                         case 11:
-                            n.setTempo(auxDouble);
-                            if (auxDouble > maximumDistance) {
-                                maximumDistance = auxDouble;
-                            } else if (auxDouble < minimumDistance) {
-                                minimumDistance = auxDouble;
-                            }
                             break;
                         case 12:
-                            n.setTime_signature(auxDouble);
-                            if (auxDouble > maximumDistance) {
-                                maximumDistance = auxDouble;
-                            } else if (auxDouble < minimumDistance) {
-                                minimumDistance = auxDouble;
-                            }
                             break;
                         case 13:
                             n.setValence(auxDouble);
@@ -169,14 +147,10 @@ public class ReadFile {
             n.setDanceability((n.getDanceability() - minimumDistance) / (maximumDistance - minimumDistance));
             n.setEnergy((n.getEnergy() / -minimumDistance) / (maximumDistance - minimumDistance));
             n.setInstrumentalness((n.getInstrumentalness() - minimumDistance) / (maximumDistance - minimumDistance));
-            n.setKey((n.getKey() - minimumDistance) / (maximumDistance - minimumDistance));
             n.setLiveness((n.getLiveness() - minimumDistance) / (maximumDistance - minimumDistance));
             n.setLoudness((n.getLoudness() - minimumDistance) / (maximumDistance - minimumDistance));
-            n.setMode((n.getMode() - minimumDistance) / (maximumDistance - minimumDistance));
-            n.setSpeechiness((n.getTempo() - minimumDistance) / (maximumDistance - minimumDistance));
-            n.setTime_signature((n.getTime_signature() - minimumDistance) / (maximumDistance - minimumDistance));
+            n.setSpeechiness((n.getSpeechiness() - minimumDistance) / (maximumDistance - minimumDistance));
             n.setValence((n.getValence() - minimumDistance) / (maximumDistance - minimumDistance));
-            n.setTempo((n.getTempo() - minimumDistance) / (maximumDistance - minimumDistance));
 
 
             base.add(n);

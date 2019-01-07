@@ -27,11 +27,15 @@ public class Main {
         }
 //tests
         Long instances = Instances.count;
+        System.out.println(instances);
         Long testAux = (instances * 2) / 3l;
+        System.out.println(testAux);
         int testBase = Integer.valueOf(testAux.toString()); // this is for separate 2/3 for data and 1/3 for tests
+
 
         //Here i created an array for tests.
         Instances vetor[] = base.subList(testBase, Integer.valueOf(instances.toString())).toArray(new Instances[Integer.valueOf(instances.toString()) - (testBase)]);
+        System.out.println(vetor.length);
 
         //creating confusion matrix
         // this loop is responsible for finding out, the number of classes/labels. (dance, rap...)
@@ -61,8 +65,7 @@ public class Main {
         Instances.count = testAux;//updating the number of instances.
 
 
-        double result = KNN.knnCalculator(183, base, confusionMatrix, vetor);
-
+        double result = KNN.knnCalculator(23, base, confusionMatrix, vetor);
         System.out.printf("Taxa de acerto: %.4f\nTaxa de erro: %.4f", result, (100 - result));
 
 

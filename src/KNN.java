@@ -4,7 +4,7 @@ public class KNN {
 
     //
     static double euclidianDistance(Instances instance, Instances instance2) {
-        double valor[] = new double[12];
+        double valor[] = new double[8];
         double soma = 0;
         // Characteristic such as duration_ms is irrelevant for the classification.
         // so i disconsidered it in this algorithm
@@ -12,14 +12,10 @@ public class KNN {
         valor[1] = Math.pow(instance.getDanceability() - instance2.getDanceability(), 2);
         valor[2] = Math.pow(instance.getEnergy() - instance2.getEnergy(), 2);
         valor[3] = Math.pow(instance.getInstrumentalness() - instance2.getInstrumentalness(), 2);
-        valor[4] = Math.pow(instance.getKey() - instance2.getKey(), 2);
-        valor[5] = Math.pow(instance.getLiveness() - instance2.getLiveness(), 2);
-        valor[6] = Math.pow(instance.getLoudness() - instance2.getLoudness(), 2);
-        valor[7] = Math.pow(instance.getSpeechiness() - instance2.getSpeechiness(), 2);
-        valor[8] = Math.pow(instance.getMode() - instance2.getMode(), 2);
-        valor[9] = Math.pow(instance.getTempo() - instance2.getTempo(), 2);
-        valor[10] = Math.pow(instance.getTime_signature() - instance2.getTime_signature(), 2);
-        valor[11] = Math.pow(instance.getValence() - instance2.getValence(), 2);
+        valor[4] = Math.pow(instance.getLiveness() - instance2.getLiveness(), 2);
+        valor[5] = Math.pow(instance.getLoudness() - instance2.getLoudness(), 2);
+        valor[6] = Math.pow(instance.getSpeechiness() - instance2.getSpeechiness(), 2);
+        valor[7] = Math.pow(instance.getValence() - instance2.getValence(), 2);
 
 
         for (int i = 0; i < valor.length; i++) {
@@ -40,9 +36,9 @@ public class KNN {
         AuxClass compare = new AuxClass();
         int count;
         double auxRightness = 0.0;
-        double vpA, fpA, vnA, fnA; // A -> hip hop
-        double vpB, fpB, vnB, fnB; // B -> pop
-        double vpC, fpC, vnC, fnC; // C -> dance
+        double vpA = 0.0, fpA = 0.0, vnA = 0.0, fnA = 0.0; // A -> hip hop
+        double vpB = 0.0, fpB = 0.0, vnB = 0.0, fnB = 0.0; // B -> pop
+        double vpC = 0.0, fpC= 0.0, vnC= 0.0, fnC= 0.0; // C -> dance
 
         int countPop, countRap, countDance;
 
@@ -87,6 +83,7 @@ public class KNN {
                     matrix[1][0] = ++matrix[1][0];
 
                 } else {
+                    matrix[2][0] = ++matrix[2][0];
 
                 }
             } else if ((Math.max(countPop, countRap) == countPop && Math.max(countRap, countDance) == countRap)
@@ -182,6 +179,7 @@ public class KNN {
         System.out.printf("\n\nAcurácia: %.3f\nErro: %.3f\nPrecisão A: %.3f\nPrecisão B: %.3f\nPrecisao C: %.3f \nRecall A: %.3f\nRecall B: %.3f\nRecall C: %.3f\nMeasure A: %.3f\nMeasure B: %.3f\nMeasure C: %.3f\nMeasure Total: %.3f\n\n"
         ,ac, err, precA, precB, precC, recallA, recallB, recallC, measureA, measureB, measureC, measureTotal);
         System.out.println("Para K = "+k+"\nQuantidade de acerto: " +Double.valueOf(auxRightness).intValue() + "\nTamanho da base de testes: " + instance.length + "\nTamanho da base do knn: " + baseInstances.size());
+
         return ((auxRightness / instance.length) * 100); // this variable is responsible for showing this algorithm's rightness rate;
 
     }
