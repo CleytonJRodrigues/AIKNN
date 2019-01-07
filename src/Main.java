@@ -3,7 +3,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class Main {
 
@@ -31,12 +33,34 @@ public class Main {
         //Here i created an array for tests.
         Instances vetor[] = base.subList(testBase, Integer.valueOf(instances.toString())).toArray(new Instances[Integer.valueOf(instances.toString()) - (testBase)]);
 
+        //creating confusion matrix
+        // this loop is responsible for finding out, the number of classifications. (dance, rap...)
+        List<String> classifications = new ArrayList<>();
+
+        for(Instances n: vetor) {
+            if(!classifications.contains(n.getClassification())) {
+                classifications.add(n.getClassification());
+            }
+        }
+
+
+        int[][] confusionMatrix = new int [classifications.size()][classifications.size()];
+
+        for(int i = 0; i < confusionMatrix.length; i++) {
+            for(int j = 0; j< confusionMatrix.length; j++) {
+                confusionMatrix[i][j] = 0;
+            }
+        }
+
+
+
+
         //Here i removed the reference for the instances that were added to the tests array;
         base = base.subList(0, testBase);
         Instances.count = testAux;//updating the number of instances.
 
 
-        double result = KNN.knnCalculator(183, base, vetor);
+        double result = KNN.knnCalculator(183, base, confusionMatrix, vetor);
 
         System.out.printf("Taxa de acerto: %.4f\nTaxa de erro: %.4f", result, (100 - result));
 
