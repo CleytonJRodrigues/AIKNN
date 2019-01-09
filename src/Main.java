@@ -62,7 +62,7 @@ public class Main {
         Instances.count = testAux;//updating the number of instances.
 
 
-        double result = KNN.knnCalculator(23, base, confusionMatrix, vetor);
+        double result = KNN.knnCalculator(26, base, confusionMatrix, vetor);
         System.out.printf("Taxa de acerto: %.4f\nTaxa de erro: %.4f", result, (100 - result));
 
 

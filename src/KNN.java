@@ -124,14 +124,14 @@ public class KNN {
         vpB = matrix[1][1];
         vpC = matrix[2][2];
 
-        fpA = matrix[0][1] + matrix[0][2];
-        fpB = matrix[1][0] + matrix[1][2];
-        fpC = matrix[2][0] + matrix[2][1];
+        fnA = matrix[0][1] + matrix[0][2];
+        fnB = matrix[1][0] + matrix[1][2];
+        fnC = matrix[2][0] + matrix[2][1];
 
 
-        fnA = matrix[1][0] + matrix[2][0];
-        fnB = matrix[0][1] + matrix[2][1];
-        fnC = matrix[1][2] + matrix[0][2];
+        fpA = matrix[1][0] + matrix[2][0];
+        fpB = matrix[0][1] + matrix[2][1];
+        fpC = matrix[1][2] + matrix[0][2];
 
 
         vnA = matrix[1][1] + matrix[2][1] + matrix[1][2] + matrix[2][2];
@@ -140,8 +140,8 @@ public class KNN {
 
 
 
-        double ac = (vpA + vpB + vpC + vnA + vnB + vnC)/instance.length;
-        double err = (fpA + fpB + fpC + fnA + fnB + fnC)/instance.length;
+        double ac = (vpA + vpB + vpC)/instance.length;
+        double err = (fnA + fnB + fnC)/instance.length;
 
         double precA = vpA / (vpA + fpA);
         double precB = vpB / (vpB + fpB);
