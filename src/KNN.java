@@ -176,11 +176,11 @@ public class KNN {
 
 
 
-        System.out.printf("\n\nAcurácia: %.4f\nErro: %.4f\nPrecisão A: %.4f\nPrecisão B: %.4f\nPrecisao C: %.4f \nRecall A: %.4f\nRecall B: %.4f\nRecall C: %.4f\nMeasure A: %.4f\nMeasure B: %.4f\nMeasure C: %.4f\nMeasure Total: %.4f\n\n"
+        System.out.printf("\n\nAcurácia: %.6f\nErro: %.6f\nPrecisão A: %.6f\nPrecisão B: %.6f\nPrecisao C: %.6f \nRecall A: %.6f\nRecall B: %.6f\nRecall C: %.6f\nMeasure A: %.6f\nMeasure B: %.6f\nMeasure C: %.6f\nMeasure Total: %.6f\n\n"
         ,ac, err, precA, precB, precC, recallA, recallB, recallC, measureA, measureB, measureC, measureTotal);
         System.out.println("Para K = "+k+"\nQuantidade de acerto: " +Double.valueOf(auxRightness).intValue() + "\nTamanho da base de testes: " + instance.length + "\nTamanho da base do knn: " + baseInstances.size());
 
-        return ((auxRightness / instance.length) * 100); // this variable is responsible for showing this algorithm's rightness rate;
+        return (ac * 100); // this variable is responsible for showing this algorithm's rightness rate;
 
     }
 }
