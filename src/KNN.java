@@ -176,7 +176,7 @@ public class KNN {
 
 
 
-        System.out.printf("\n\nAcurácia: %.3f\nErro: %.3f\nPrecisão A: %.3f\nPrecisão B: %.3f\nPrecisao C: %.3f \nRecall A: %.3f\nRecall B: %.3f\nRecall C: %.3f\nMeasure A: %.3f\nMeasure B: %.3f\nMeasure C: %.3f\nMeasure Total: %.3f\n\n"
+        System.out.printf("\n\nAcurácia: %.4f\nErro: %.4f\nPrecisão A: %.4f\nPrecisão B: %.4f\nPrecisao C: %.4f \nRecall A: %.4f\nRecall B: %.4f\nRecall C: %.4f\nMeasure A: %.4f\nMeasure B: %.4f\nMeasure C: %.4f\nMeasure Total: %.4f\n\n"
         ,ac, err, precA, precB, precC, recallA, recallB, recallC, measureA, measureB, measureC, measureTotal);
         System.out.println("Para K = "+k+"\nQuantidade de acerto: " +Double.valueOf(auxRightness).intValue() + "\nTamanho da base de testes: " + instance.length + "\nTamanho da base do knn: " + baseInstances.size());
 
