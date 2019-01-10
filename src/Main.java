@@ -62,7 +62,9 @@ public class Main {
         Instances.count = testAux;//updating the number of instances.
 
 
-        double result = KNN.knnCalculator(26, base, confusionMatrix, vetor);
+
+        // we added this int: distanceOption, 1 is for manhattan, 2 euclidian, 3 or other values: chebyshev
+        double result = KNN.knnCalculator(26, base, confusionMatrix, 2, vetor);
         System.out.printf("Taxa de acerto: %.4f\nTaxa de erro: %.4f", result, (100 - result));
 
 

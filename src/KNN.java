@@ -27,11 +27,63 @@ public class KNN {
 
 
     }
+    static double manhattanDistance(Instances instance, Instances instance2) {
+        double valor[] = new double[8];
+        double soma = 0;
+        valor[0] = instance.getAcousticness() - instance2.getAcousticness();
+        valor[1] = instance.getDanceability() - instance2.getDanceability();
+        valor[2] = instance.getEnergy() - instance2.getEnergy();
+        valor[3] = instance.getInstrumentalness() - instance2.getInstrumentalness();
+        valor[4] = instance.getLiveness() - instance2.getLiveness();
+        valor[5] = instance.getLoudness() - instance2.getLoudness();
+        valor[6] = instance.getSpeechiness() - instance2.getSpeechiness();
+        valor[7] = instance.getValence() - instance2.getValence();
+
+
+        for (int i = 0; i < valor.length; i++) {
+            if(valor[i] < 0) {
+                valor[i] = valor[i] * (-1.0);
+            }
+            soma += valor[i];
+        }
+
+        return soma;
+
+
+    }
+
+    static double chebyshevDistance(Instances instance, Instances instance2) {
+        double valor[] = new double[8];
+        double max = 0;
+        valor[0] = instance.getAcousticness() - instance2.getAcousticness();
+        valor[1] = instance.getDanceability() - instance2.getDanceability();
+        valor[2] = instance.getEnergy() - instance2.getEnergy();
+        valor[3] = instance.getInstrumentalness() - instance2.getInstrumentalness();
+        valor[4] = instance.getLiveness() - instance2.getLiveness();
+        valor[5] = instance.getLoudness() - instance2.getLoudness();
+        valor[6] = instance.getSpeechiness() - instance2.getSpeechiness();
+        valor[7] = instance.getValence() - instance2.getValence();
+
+
+        for (int i = 0; i < valor.length; i++) {
+            if(valor[i] < 0) {
+                valor[i] = valor[i] * (-1.0);
+            }
+            if(max < valor[i]) {
+                max = valor[i];
+            }
+        }
+
+        return max;
+
+
+    }
 
 
     // initially i thought about making this method a weightedKNN, but tests have showed better results using a normal knn.
+    // we added this int: distanceOption, 1 is for manhattan, 2 euclidian, 3 or other values chebyshev
 
-    static double knnCalculator(int k, List<Instances> baseInstances, int[][] matrix, Instances... instance) {  // using varargs
+    static double knnCalculator(int k, List<Instances> baseInstances, int[][] matrix, int distanceOption, Instances... instance) {  // using varargs
         List<AuxClass> aux = new ArrayList<>();
         AuxClass compare = new AuxClass();
         int count;
@@ -49,8 +101,17 @@ public class KNN {
             count = 0;
             for (Instances y : baseInstances) {
                 if (!x.equals(y)) {
-                    AuxClass obj = new AuxClass(y.getClassification(), (KNN.euclidianDistance(x, y)));
-                    aux.add(obj);
+                    if(distanceOption == 1) {
+                        AuxClass obj = new AuxClass(y.getClassification(), (KNN.manhattanDistance(x, y)));
+                        aux.add(obj);
+                    }else if(distanceOption == 2) {
+                        AuxClass obj = new AuxClass(y.getClassification(), (KNN.euclidianDistance(x, y)));
+                        aux.add(obj);
+                    }else {
+                        AuxClass obj = new AuxClass(y.getClassification(), (KNN.chebyshevDistance(x, y)));
+                        aux.add(obj);
+                    }
+
                 }
 
             }
@@ -176,7 +237,7 @@ public class KNN {
 
 
 
-        System.out.printf("\n\nAcurácia: %.6f\nErro: %.6f\nPrecisão A: %.6f\nPrecisão B: %.6f\nPrecisao C: %.6f \nRecall A: %.6f\nRecall B: %.6f\nRecall C: %.6f\nMeasure A: %.6f\nMeasure B: %.6f\nMeasure C: %.6f\nMeasure Total: %.6f\n\n"
+        System.out.printf("\n\nAcurácia: %.6f\nErro: %.6f\nPrecisão A: %.6f\nPrecisão B: %.6f\nPrecisao C: %.6f \nRecall A: %.6f\nRecall B: %.6f\nRecall C: %.6f\nF-Measure A: %.6f\nF-Measure B: %.6f\nF-Measure C: %.6f\nF-Measure Total: %.6f\n\n"
         ,ac, err, precA, precB, precC, recallA, recallB, recallC, measureA, measureB, measureC, measureTotal);
         System.out.println("Para K = "+k+"\nQuantidade de acerto: " +Double.valueOf(auxRightness).intValue() + "\nTamanho da base de testes: " + instance.length + "\nTamanho da base do knn: " + baseInstances.size());
 
