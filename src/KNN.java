@@ -159,7 +159,8 @@ public class KNN {
                     matrix[2][1] = ++matrix[2][1];
 
                 }
-            } else {
+            } else if((Math.max(countDance, countRap) == countDance && Math.max(countRap, countPop) == countRap)
+                    || (Math.max(countDance, countPop) == countDance && Math.max(countPop, countRap) == countPop)) {
                 if (x.getClassification().equals("dance")) {
                     matrix[2][2] = ++matrix[2][2];
                     auxRightness++;
@@ -170,6 +171,83 @@ public class KNN {
                     matrix[1][2] = ++matrix[1][2];
 
                 }
+            }else {
+                int randomNum = 0 + (int)(Math.random() * (1 - 0));  // número aleatório entre 0 e 1.
+                if(countPop == countRap) {
+                    if(randomNum == 0) {
+                        if (x.getClassification().equals("pop")) {
+                            matrix[1][1] = ++matrix[1][1];
+                            auxRightness++;
+                        } else if (x.getClassification().equals("hip-hop/rap")) {
+                            matrix[0][1] = ++matrix[0][1];
+
+                        } else {
+                            matrix[2][1] = ++matrix[2][1];
+
+                        }
+                    }else {
+                        if (x.getClassification().equals("hip-hop/rap")) {
+                            matrix[0][0] = ++matrix[0][0];
+                            auxRightness++;
+                        } else if (x.getClassification().equals("pop")) {
+                            matrix[1][0] = ++matrix[1][0];
+
+                        } else {
+                            matrix[2][0] = ++matrix[2][0];
+
+                        }
+                    }
+                }else if(countPop == countDance) {
+                    if(randomNum == 0) {
+                        if (x.getClassification().equals("pop")) {
+                            matrix[1][1] = ++matrix[1][1];
+                            auxRightness++;
+                        } else if (x.getClassification().equals("hip-hop/rap")) {
+                            matrix[0][1] = ++matrix[0][1];
+
+                        } else {
+                            matrix[2][1] = ++matrix[2][1];
+
+                        }
+                    }else {
+                        if (x.getClassification().equals("dance")) {
+                            matrix[2][2] = ++matrix[2][2];
+                            auxRightness++;
+                        } else if (x.getClassification().equals("hip-hop/rap")) {
+                            matrix[0][2] =  ++matrix[0][2];
+
+                        } else {
+                            matrix[1][2] = ++matrix[1][2];
+
+                        }
+                    }
+
+                }else {
+                    if(randomNum == 0) {
+                        if (x.getClassification().equals("hip-hop/rap")) {
+                            matrix[0][0] = ++matrix[0][0];
+                            auxRightness++;
+                        } else if (x.getClassification().equals("pop")) {
+                            matrix[1][0] = ++matrix[1][0];
+
+                        } else {
+                            matrix[2][0] = ++matrix[2][0];
+
+                        }
+                    }else {
+                        if (x.getClassification().equals("dance")) {
+                            matrix[2][2] = ++matrix[2][2];
+                            auxRightness++;
+                        } else if (x.getClassification().equals("hip-hop/rap")) {
+                            matrix[0][2] =  ++matrix[0][2];
+
+                        } else {
+                            matrix[1][2] = ++matrix[1][2];
+
+                        }
+                    }
+                }
+
             }
             aux.clear();
 
