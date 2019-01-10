@@ -145,7 +145,7 @@ public class ReadFile {
 
             n.setAcousticness((n.getAcousticness() - minimumDistance) / (maximumDistance - minimumDistance));
             n.setDanceability((n.getDanceability() - minimumDistance) / (maximumDistance - minimumDistance));
-            n.setEnergy((n.getEnergy() / -minimumDistance) / (maximumDistance - minimumDistance));
+            n.setEnergy((n.getEnergy() - minimumDistance) / (maximumDistance - minimumDistance));
             n.setInstrumentalness((n.getInstrumentalness() - minimumDistance) / (maximumDistance - minimumDistance));
             n.setLiveness((n.getLiveness() - minimumDistance) / (maximumDistance - minimumDistance));
             n.setLoudness((n.getLoudness() - minimumDistance) / (maximumDistance - minimumDistance));
